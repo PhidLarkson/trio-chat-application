@@ -1,16 +1,16 @@
-# django-chat-application
+# trio-chat-application
 A simple chat application to better understand django-channels
 
 
 # Overview/Result
 Login screen
-![Screenshot from 2023-09-29 15-10-45](https://github.com/Me45y63/django-chat-application/assets/66312028/screenshots/Screenshot from 2023-11-25 11-23-44.png)
+![Screenshot from 2023-09-29 15-10-45](https://github.com/Me45y63/django-chat-application/assets/66312028/1)
 
 Chat Lobby
-![Screenshot from 2023-09-29 15-11-01](https://github.com/Me45y63/django-chat-application/assets/66312028/screenshots/Screenshot from 2023-11-25 11-27-09.png)
+![Screenshot from 2023-09-29 15-11-01](https://github.com/Me45y63/django-chat-application/assets/66312028/2)
 
 Room with messaging
-![Screenshot from 2023-09-29 15-11-37](https://github.com/Me45y63/django-chat-application/assets/66312028/screenshots/Screenshot from 2023-11-25 11-30-35.png)
+![Screenshot from 2023-09-29 15-11-37](https://github.com/Me45y63/django-chat-application/assets/66312028/4)
 
 # Instructions
 1. clone the project
