@@ -3,14 +3,15 @@ A simple chat application to better understand django-channels
 
 
 # Overview/Result
-Login screen
-![1](https://github.com/Me45y63/trio-chat-application/assets/66312028/1.png)
+- Login Screen
+  ![Login Screen](screenshots/1.png)
 
-Chat Lobby
-![2](https://github.com/Me45y63/trio-chat-application/assets/66312028/2.png)
+- Chat Lobby
+  ![Chat Lobby](screenshots/2.png)
 
-Room with messaging
-![4](https://github.com/Me45y63/trio-chat-application/assets/66312028/4.png)
+- Room with Messaging
+  ![Room with Messaging](screenshots/4.png)
+
 
 # Instructions
 1. clone the project
