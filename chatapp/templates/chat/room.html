@@ -1,0 +1,78 @@
+{% extends "chat/base.html" %}
+
+{% if room %}
+{% block title %}{{room.name}} | Chatroom |{% endblock %}
+
+{% block body %}
+<div class="relative pb-10">
+<div class="lg:p-20 text-center">
+  <h1 class="mx-auto rounded-full p-3 font-mono text-white bg-slate-800 m-3 ">{{room}} Chat Room</h1>
+</div>
+
+<div class="mx-4 pb-5 backdrop-blur-sm">
+  <div class="chat-messages space-y-2 flex flex-col object-fill" id="chat-messages">
+    {% for message in messages%}
+    <div class="mx-auto text-sm shadow-lg max-w-md my-auto px-10 py-1 bg-slate-500 border-solid border-1 border-slate-200 flex flex-col object-fill" style="width: 300px; object-fit: contain; word-wrap: break-word; border-radius: 5px;">
+      <p class="font-bold text-xs bg-slate-600 p-1 font-mono">{{message.sender}}</p>
+      <p>{{message.content}}</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="lg:w-2/4 mx-4 mb-10 lg:mx-auto p-1 bg-slate-900 rounded-full fixed bottom-10 left-0 right-0 opacity-80 text-black">
+  <form method="post" class="flex">
+    {% csrf_token %}
+    <input type="text" name="content" class="flex-1 rounded-l-full mr-3 px-5" placeholder="Your message..." id="message-input">
+
+    <button type="submit" id="send-button" class="px-5 py-1 rounded-full h-10">
+      <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11.5003 12H5.41872M5.24634 12.7972L4.24158 15.7986C3.69128 17.4424 3.41613 18.2643 3.61359 18.7704C3.78506 19.21 4.15335 19.5432 4.6078 19.6701C5.13111 19.8161 5.92151 19.4604 7.50231 18.7491L17.6367 14.1886C19.1797 13.4942 19.9512 13.1471 20.1896 12.6648C20.3968 12.2458 20.3968 11.7541 20.1896 11.3351C19.9512 10.8529 19.1797 10.5057 17.6367 9.81135L7.48483 5.24303C5.90879 4.53382 5.12078 4.17921 4.59799 4.32468C4.14397 4.45101 3.77572 4.78336 3.60365 5.22209C3.40551 5.72728 3.67772 6.54741 4.22215 8.18767L5.24829 11.2793C5.34179 11.561 5.38855 11.7019 5.407 11.8459C5.42338 11.9738 5.42321 12.1032 5.40651 12.231C5.38768 12.375 5.34057 12.5157 5.24634 12.7972Z" stroke="#c4afff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+    </button>
+  </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    const roomId = "{{ room_id }}";
+    const user = "{{ user }}"
+    const chatSocket = new WebSocket(
+      `ws://${window.location.host}/ws/room/${roomId}/`
+    );
+
+    chatSocket.onmessage = function (e) {
+      const data = JSON.parse(e.data);
+      const message = data.message;
+      const sender = data.sender;
+      
+      if (message) {
+        let html = '<div class="mx-auto text-sm shadow-lg max-w-md my-auto px-10 py-1 bg-slate-500 border-solid border-1 border-slate-200 flex flex-col object-fill" style="width: 300px; object-fit: contain; word-wrap: break-word; border-radius: 5px;">';
+            html += '<p class="font-semibold">' + sender + '</p>';
+            html += '<p>' + message + '</p></div>';
+
+          document.querySelector('#chat-messages').innerHTML += html;
+      } else {
+        alert('The message was empty')
+      }
+    };
+
+    chatSocket.onclose = function (e) {
+      console.log('closed');
+    }
+
+    document.querySelector('#send-button').onclick = function (e) {
+      e.preventDefault();
+      const messageInput = document.querySelector('#message-input');
+      const message = messageInput.value;
+      chatSocket.send(JSON.stringify({
+        'message': message,
+        'sender': user,
+        'room': roomId,
+      }));
+      messageInput.value = '';
+      return false;
+    };
+  </script>
+{% endblock %}</div>
+
+{% endif %}

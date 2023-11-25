@@ -1,0 +1,36 @@
+{% extends "chat/base.html" %}
+    {% block body %}
+    <main class="min-h-screen flex flex-col items-center justify-center">
+        <div class="space-y-3 my-1 mx-8">
+            <h1 class="text-3xl font-mono">Create a new personal room</h1>
+            <form method="get" action="{% url 'search' %}">
+            <p class="text-center">
+                or 
+                <button type='search' class="opacity-20 border-b border-blue-400"> see my created rooms</button>
+            </p>
+        </form>
+        </div>
+        <div class="max-w-md w-full mx-auto bg-gray-200 rounded-sm p-7 space-y-3">
+            <form method='post' class='flex flex-row space-x-5'>
+                {% csrf_token %}
+                <div class="flex flex-col mb-5">
+                    <input class="border border-b border-2 border-black px-3 py-2 rounded-full" type="text" name="name" placeholder="Enter a new group name..."/>
+                </div>
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="mb-5 p-4 rounded-xl bg-red-300 text-white">
+                                <p>{{ error|escape }}</p>
+                            </div>
+                        {% endfor%}
+                    {% endfor %}
+                {% endif %}
+                <div>
+                    <button type="submit" class="rounded-full bg-slate-900">
+                        <svg width="40px" height="40px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(2.879999999999999,2.879999999999999), scale(0.76)"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.048"></g><g id="SVGRepo_iconCarrier"> <path d="M6 12H18M12 6V18" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+    {% endblock %}

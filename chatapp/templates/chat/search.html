@@ -1,0 +1,26 @@
+{% extends "chat/base.html" %}
+
+{% block body %}
+<div class="flex flex-col items-center justify-center mt-5">
+    <h1 class="text-2xl font-mono">Search results for "{{query}}" </h1>
+    
+    <h2 class="text-md font-mono">Rooms Found:</h2>
+</div>
+{%if rooms %}
+    <div class="w-full mt-3">
+        <div class="w-full flex flex-col items-center justify-center px-5">
+            {%for room in rooms%}
+                <div class="w-full bg-slate-400 opacity-60 shadow-md m-3 rounded-sm">
+                    <a  href={% url 'room' room.id %}  class="text-center">
+                        <h2 class="m-2 text-2xl font-mono text-white space-x-10 flex flex-col">{{room.name}} <p class="text-xs">~{{room.creator}}</p></h2>
+                    </a>
+                </div>
+            {%endfor%}
+        </div>
+    </div>
+{%else%}
+    <div class="flex flex-wrap items-center justify-center mt-10">
+        <h1 class="text-4xl font-mono">No rooms found</h1>
+    </div>
+{%endif%}
+{% endblock %}

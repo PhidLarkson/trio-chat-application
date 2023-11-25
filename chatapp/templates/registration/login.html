@@ -1,0 +1,41 @@
+{% extends "chat/base.html" %}
+    {% block body%}
+    {% if msg%}
+    <h3>{{msg}}</h3>
+    {%endif%}
+    <main class="min-h-screen flex flex-col items-center justify-center">
+        <div class="space-y-3 my-5">
+            <h1 class="text-3xl font-extrabold">Sign in to your account</h1>
+            <p class="text-center">
+                or 
+                <a href="/signup" class="text-blue-400 border-b border-blue-400"> register your free account</a>
+            </p>
+        </div>
+        <div class="max-w-md w-full mx-auto bg-gray-200 rounded-md p-6 space-y-3 font-mono text-black border border-b">
+            <form method="post">
+                {% csrf_token %}
+                <div class="flex flex-col">
+                    <label class="mb-1 text-sm" htmlFor="username">Username</label>
+                    <input class="border rounded-md px-3 py-2" type="text" name="username" required/>
+                </div>
+                <div class="flex flex-col">
+                    <label class="mb-1 text-sm" htmlFor="password">Password</label>
+                    <input class="border rounded-md px-3 py-2 mb-5" type="password" name="password" required/>
+                </div>
+                <div>
+                    <button type="submit" class="w-full rounded-md bg-black text-white py-2">Sign in</button>
+                </div>
+            </form>
+            <div class="flex justify-between text-sm">
+                <div class="flex items-center space-x-2">
+                    <input type="checkbox" name="rememberme">
+                    <label htmlFor="rememberme">Remember Me</label>
+                </div>
+                <div>
+                    <a href="/forgot-password" class="text-blue-400">Forgot Password?</a>
+                </div>
+            </div>
+            <div></div>
+        </div>
+    </main>
+    {% endblock %}
