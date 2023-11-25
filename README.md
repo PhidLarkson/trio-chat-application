@@ -4,13 +4,13 @@ A simple chat application to better understand django-channels
 
 # Overview/Result
 Login screen
-![Screenshot from 2023-09-29 15-10-45](https://github.com/Me45y63/trio-chat-application/assets/66312028/1.png)
+![1](https://github.com/Me45y63/trio-chat-application/assets/66312028/1.png)
 
 Chat Lobby
-![Screenshot from 2023-09-29 15-11-01](https://github.com/Me45y63/trio-chat-application/assets/66312028/2.png)
+![2](https://github.com/Me45y63/trio-chat-application/assets/66312028/2.png)
 
 Room with messaging
-![Screenshot from 2023-09-29 15-11-37](https://github.com/Me45y63/trio-chat-application/assets/66312028/4.png)
+![4](https://github.com/Me45y63/trio-chat-application/assets/66312028/4.png)
 
 # Instructions
 1. clone the project
@@ -20,7 +20,7 @@ Room with messaging
 5. explore!
 
 
-# Trio Chat Application
+# ...
 A simple chat application built with Django to showcase the use of Django Channels.
 
 ## Table of Contents
