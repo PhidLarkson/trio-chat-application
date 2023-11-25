@@ -1,6 +1,17 @@
 # trio-chat-application
 Chat application built with Django to showcase the use of Django Channels.
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Screenshots](#screenshots)
+- [Contributing](#contributing)
+- [License](#license)
+
+
 
 # Overview/Result
 Trio Chat Application is a Django-based chat platform utilizing Django Channels to enable real-time communication. This project serves as a learning example for implementing Django Channels in a chat application.
@@ -14,16 +25,6 @@ Trio Chat Application is a Django-based chat platform utilizing Django Channels 
 - Room with Messaging
   ![Room with Messaging](screenshots/4.png)
 
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
 
 
 ## Features
